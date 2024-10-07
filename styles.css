@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+header {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+header img {
+    height: 50px;
+    margin-right: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #002f67;
+    font-weight: bold;
+}
+
+nav ul li a.active {
+    background-color: #002f67;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.login-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 100px;
+}
+
+.login-form {
+    width: 40%;
+}
+
+.login-form h1 {
+    color: #002f67;
+    font-size: 36px;
+}
+
+.login-form label {
+    color: #002f67; /* Azul escuro para os labels */
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+    display: block;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+
+.login-form a {
+    color: #077342;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #077342;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-image {
+    width: 50%;
+    background-image: url('path/to/your/image.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+footer {
+    background: linear-gradient(90deg, #71b922, #077342);
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.login-image img {
+    width: 100%;
+    border-radius: 10px;
+}
