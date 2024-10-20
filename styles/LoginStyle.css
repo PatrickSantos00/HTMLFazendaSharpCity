@@ -59,7 +59,8 @@ nav ul li a.active {
 }
 
 .login-form label {
-    color: #002f67; /* Azul escuro para os labels */
+    color: #002f67;
+    /* Azul escuro para os labels */
     font-size: 16px;
     font-weight: bold;
     margin: 10px 0;

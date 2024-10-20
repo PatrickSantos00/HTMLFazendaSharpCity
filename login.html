@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Fazenda Sharp City</title>
+    <link rel="stylesheet" href="./styles/LoginStyle.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="./components/images/Logo.png" alt="Fazenda Sharp City">
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#">Quem Somos</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="login-container">
+        <div class="login-form">
+            <h1>Login</h1>
+            <label for="username">USUÁRIO</label>
+            <input type="text" id="username" name="username" value="">
+            <label for="password">SENHA</label>
+            <input type="password" id="password" name="password">
+            <a href="#">Esqueceu sua senha? Clique aqui.</a>
+            <button onclick="login()">Acessar</button>
+        </div>
+        <div class="login-image">
+            <img src="./components/images/Tela.png" alt="Imagem de fazenda">
+        </div>
+    </div>
+
+
+    <footer>
+        <p>© 2024 Fazenda Sharp City. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="./js/LoginScript.js"></script>
+</body>
+
+</html>
