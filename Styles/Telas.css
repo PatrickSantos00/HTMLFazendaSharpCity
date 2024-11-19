@@ -1,0 +1,65 @@
+body {
+    background-image: url('../Images/MainPageBackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.left h1 {
+    font-size: 3rem;
+    color: white;
+}
+
+.left h2 {
+    font-size: 3rem;
+    color: white;
+}
+
+.right img {
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .left {
+        margin-bottom: 20px;
+    }
+
+    .left h1 {
+        font-size: 2rem;
+    }
+
+    .right img {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .left h1 {
+        font-size: 1.8rem;
+    }
+
+    .right img {
+        max-width: 250px;
+    }
+}
