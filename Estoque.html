@@ -18,26 +18,13 @@
 <body>
     <header>
         <section>
-            <a href="https://fazendasharpcity.ddns.net/">
-                <img src="./Images/LogoFazendaSharpCity.png" width="" height="" alt="FazendaSharpCity" id="logo" />
+            <img src="./Images/LogoFazendaSharpCity.png" width="" height="" alt="FazendaSharpCity" id="logo" />
             </a>
             <i class="fas fa-bars"></i>
             <div id="menu">
                 <ul class="nav">
-                    <li class="mHome"><a href="https://fazendasharpcity.ddns.net/">Início</a></li>
-
-                    <li><a href="#quemSomosNos">Quem Somos</a></li>
-
-                    <li><a href="#funcio">Funcionalidades</a></li>
-
-                    <li><a href="#">Desenvolvedores</a></li>
-
-                    <li><a href="#">Sharp+</a></li>
-
-                    <li><a href="#">Faq</a>
-
                     <li class="mCadastro">
-                        <a href="#" target="_blank" class="btn">Login</a>
+                        <a href="#" class="btn" onclick="voltar()">Voltar</a>
                     </li>
                 </ul>
             </div>
@@ -118,6 +105,13 @@
     </div>
     <script src="./js/Estoque.js"></script>
     <script src="./js/HamburguerJS.js"></script>
+
+    <script>
+        function voltar() {
+            window.history.back();
+        }
+    </script>
+
 </body>
 
 </html>
