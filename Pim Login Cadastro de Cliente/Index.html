@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro Cliente</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      document.getElementById('telefone').addEventListener('input', function (e) {
+        
+        this.value = this.value.replace(/\D/g, '');
+
+        
+        if (this.value.length > 10) {
+          this.value = this.value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+        } else if (this.value.length > 5) {
+          this.value = this.value.replace(/^(\d{2})(\d{5})$/, '($1) $2');
+        } else if (this.value.length > 2) {
+          this.value = this.value.replace(/^(\d{2})/, '($1)');
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  
+  <div class="background-image">
+   
+    <div class="login-container">
+     
+      <div class="image-section">
+        <div class="image-overlay">
+          <img src="./Imagens/hexágono imagem.png" alt="Campo agrícola" />
+        </div>
+      </div>
+
+      
+      <div class="form-section">
+        <form class="login-form" action="/submit-cadastro" method="POST">
+          <h1><span class="highlight">Cadastro</span> Cliente</h1>
+
+          
+          <label for="nome-completo">NOME COMPLETO</label>
+          <input type="text" id="nome-completo" name="nome-completo" placeholder="Digite seu nome completo" required aria-label="Digite seu nome completo">
+
+          <label for="email">E-MAIL</label>
+          <input type="email" id="email" name="email" placeholder="Digite seu email" required aria-label="Digite seu email" 
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Por favor, insira um e-mail válido (exemplo@dominio.com)">
+
+          <label for="telefone">TELEFONE</label>
+          <input type="tel" id="telefone" name="telefone" placeholder="Digite seu telefone" required aria-label="Digite seu telefone" 
+            pattern="\(\d{2}\)\s?\d{5}-\d{4}" title="Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX">
+
+          
+         
+          <label>
+            <input type="checkbox" name="termos" required> Eu concordo com os <a href="#" class="terms-link">termos de uso</a>
+          </label>
+
+          
+          <button type="submit" class="login-button">CADASTRAR</button>
+          <button type="button" class="signup-button">VOLTAR PARA O LOGIN</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
