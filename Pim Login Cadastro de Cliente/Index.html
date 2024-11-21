@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro Cliente</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="./Images/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./Images/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./Images/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="./Images/favicon_io/site.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <link media="screen" href="./Estilos/MainStyle.css" type="text/css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/1875de819e.js" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('telefone').addEventListener('input', function (e) {
+        this.value = this.value.replace(/\D/g, '');
+        if (this.value.length > 10) {
+          this.value = this.value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+        } else if (this.value.length > 5) {
+          this.value = this.value.replace(/^(\d{2})(\d{5})$/, '($1) $2');
+        } else if (this.value.length > 2) {
+          this.value = this.value.replace(/^(\d{2})/, '($1)');
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <section>
+      <a href="https://fazendasharpcity.ddns.net/">
+        <img src="./Images/LogoFazendaSharpCity.png" width="" height="" alt="FazendaSharpCity" id="logotipo">
+      </a>
+      <i class="fas fa-bars"></i>
+      <div id="menu">
+        <ul class="nav">
+          <li class="mHome"><a href="https://fazendasharpcity.ddns.net/">Início</a></li>
+          <li class="mTreinamento"><a href="#" class="topLink">Planos AgroHUB</a>
+            <ul class="subnav">
+              <li><a href="https://agrohub.com.br/agricultura-integracao">Agricultura e Integração</a></li>
+              <li><a href="https://agrohub.com.br/gestao-pecuaria">Gestão Pecuária</a></li>
+            </ul>
+          </li>
+          <li class="mSolucoes"><a href="https://agrohub.com.br/solucoes" class="topLink">Soluções</a>
+            <ul class="subnav">
+              <li><a href="https://agrohub.com.br/solucoes/solucoes-para-produtores/">Soluções para Produtores</a></li>
+              <li><a href="https://agrohub.com.br/solucoes/solucoes-para-consultores/">Soluções para Consultores</a></li>
+              <li><a href="https://agrohub.com.br/solucoes/solucoes-para-empresas/">Soluções para Empresas</a></li>
+            </ul>
+          </li>
+          <li class="mFuncionalidades"><a href="https://agrohub.com.br/funcionalidades" class="topLink">Funcionalidades</a>
+            <ul class="subnav">
+              <li><a href="https://agrohub.com.br/funcionalidades">Gratuitas</a></li>
+              <li><a href="https://agrohub.com.br/funcionalidades#pc-sat">Manejo por Satélite</a></li>
+              <li><a href="https://agrohub.com.br/funcionalidades#multifazendas">Multifazendas</a></li>
+              <li><a href="https://agrohub.com.br/funcionalidades#controle-financeiro">Controle Financeiro</a></li>
+              <li><a href="https://agrohub.com.br/funcionalidades#controle-individual">Controle Individual</a></li>
+              <li><a href="https://agrohub.com.br/funcionalidades#escritorio-virtual">Escritório Virtual</a></li>
+            </ul>
+          </li>
+          <li><a href="https://agrohub.com.br/passo-a-passo">Quem Somos</a></li>
+          <li class="mBlog"><a href="#" class="topLink">Configurações</a>
+            <ul class="subnav">
+              <li><a href="https://agrohub.com.br/guia-facil/">Guia Fácil</a></li>
+              <li><a href="https://agrohub.com.br/category/para-consultores/">Para Consultores</a></li>
+              <li><a href="https://agrohub.com.br/category/tutoriais/">Tutoriais</a></li>
+            </ul>
+          </li>
+          <li><a href="https://agrohub.com.br/category/blog">Desenvolvedores</a></li>
+          <li><a href="https://agrohub.com.br/agrohub-mais">Sharp+</a></li>
+          <li class="mTreinamento"><a href="#" class="topLink">Perguntas Frequentes</a>
+            <ul class="subnav">
+              <li><a href="https://agrohub.com.br/faq">Perguntas Gerais</a></li>
+              <li><a href="https://agrohub.com.br/faq">Manejo</a></li>
+              <li><a href="https://agrohub.com.br/faq">Financeiro</a></li>
+              <li><a href="https://agrohub.com.br/faq">Controle Pecuário</a></li>
+              <li><a href="https://agrohub.com.br/faq">Controle Individual</a></li>
+            </ul>
+          </li>
+          <li class="mCadastro"><a href="https://portal.agrohub.com.br/" target="_blank" class="btn">Entrar</a></li>
+        </ul>
+      </div>
+    </section>
+  </header>
+
+  <div class="background-image">
+    <div class="login-container">
+      <div class="image-section">
+        <div class="image-overlay">
+          <img src="./Imagens/hexágono imagem.png" alt="Campo agrícola" />
+        </div>
+      </div>
+      <div class="form-section">
+        <form class="login-form" action="/submit-cadastro" method="POST">
+          <h1><span class="highlight">Cadastro</span> Cliente</h1>
+          <label for="nome-completo">NOME COMPLETO</label>
+          <input type="text" id="nome-completo" name="nome-completo" placeholder="Digite seu nome completo" required>
+          <label for="email">E-MAIL</label>
+          <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+          <label for="telefone">TELEFONE</label>
+          <input type="tel" id="telefone" name="telefone" placeholder="Digite seu telefone" required>
+          <label>
+            <input type="checkbox" name="termos" required> Eu concordo com os <a href="#" class="terms-link">termos de uso</a>
+          </label>
+          <button type="submit" class="login-button">CADASTRAR</button>
+          <button type="button" class="signup-button">VOLTAR PARA O LOGIN</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
