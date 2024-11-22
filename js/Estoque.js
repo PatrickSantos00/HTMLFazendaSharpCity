@@ -1,33 +1,53 @@
+// Função para formatar a data
 function formatDate(dateString) {
     const [year, month, day] = dateString.split("-");
     return `${day}/${month}/${year}`;
 }
 
-
+// Abrir modal de inclusão de produto
 document.getElementById('openModalBtn').addEventListener('click', function() {
     console.log("Abrindo modal de inclusão de produto.");
     document.getElementById('modal').style.display = 'flex';
+    populateClientList('clientList');
 });
 
+// Fechar modal de inclusão de produto
 document.getElementById('closeModalBtn').addEventListener('click', function() {
     console.log("Fechando modal de inclusão de produto.");
     document.getElementById('modal').style.display = 'none';
 });
 
-document.getElementById('deleteProductBtn').addEventListener('click', function() {
-    console.log("Abrindo modal de exclusão de produto.");
-    populateProductSelect();
-    document.getElementById('deleteModal').style.display = 'flex';
+// Verifica se o botão de deletar produto existe antes de adicionar evento
+const deleteProductBtn = document.getElementById('deleteProductBtn');
+if (deleteProductBtn) {
+    deleteProductBtn.addEventListener('click', function() {
+        console.log("Abrindo modal de exclusão de produto.");
+        populateProductSelect();
+        document.getElementById('deleteModal').style.display = 'flex';
+    });
+}
+
+// Fechar modal de exclusão de produto
+const closeDeleteModalBtn = document.getElementById('closeDeleteModalBtn');
+if (closeDeleteModalBtn) {
+    closeDeleteModalBtn.addEventListener('click', function() {
+        console.log("Fechando modal de exclusão de produto.");
+        document.getElementById('deleteModal').style.display = 'none';
+    });
+}
+
+// Fechar modal de edição de produto com o botão "X"
+document.getElementById('closeEditModalBtn').addEventListener('click', function() {
+    console.log("Fechando modal de edição de produto.");
+    document.getElementById('editModal').style.display = 'none';
+    resetSellModalFields();
 });
 
-document.getElementById('closeDeleteModalBtn').addEventListener('click', function() {
-    console.log("Fechando modal de exclusão de produto.");
-    document.getElementById('deleteModal').style.display = 'none';
-});
-
+// Fechar modais ao clicar fora deles
 window.addEventListener('click', function(event) {
     const modal = document.getElementById('modal');
     const deleteModal = document.getElementById('deleteModal');
+    const editModal = document.getElementById('editModal');
     if (event.target === modal) {
         console.log("Fechando modal de inclusão ao clicar fora.");
         modal.style.display = 'none';
@@ -36,6 +56,11 @@ window.addEventListener('click', function(event) {
         console.log("Fechando modal de exclusão ao clicar fora.");
         deleteModal.style.display = 'none';
     }
+    if (event.target === editModal) {
+        console.log("Fechando modal de edição ao clicar fora.");
+        editModal.style.display = 'none';
+        resetSellModalFields();
+    }
 });
 
 // Adiciona produto e cria um novo box
@@ -43,6 +68,7 @@ document.querySelector('#addProductForm').addEventListener('submit', function(ev
     event.preventDefault();
 
     const nome = document.getElementById('productName').value;
+    const cliente = document.getElementById('productClient').value;
     const quantidade = document.getElementById('productQuantity').value;
     const preco = document.getElementById('productPrice').value;
     const validade = document.getElementById('productValidity').value;
@@ -50,15 +76,19 @@ document.querySelector('#addProductForm').addEventListener('submit', function(ev
     const newBox = document.createElement('div');
     newBox.classList.add('rectangle');
     newBox.dataset.name = nome;
+    newBox.dataset.client = cliente;
     newBox.dataset.quantity = quantidade;
     newBox.dataset.price = preco;
     newBox.dataset.validity = validade;
+    
 
     newBox.innerHTML = `
         <p>Nome: ${nome}</p>
+        <p>Cliente: ${cliente}</p>
         <p>Quantidade: ${quantidade}</p>
-        <p>Preço: R$ ${preco}</p>
+        <p>Preço: R$ ${parseFloat(preco).toFixed(2)}</p>
         <p>Validade: ${formatDate(validade)}</p>
+        
     `;
 
     document.querySelector('.container').appendChild(newBox);
@@ -73,44 +103,42 @@ function populateProductSelect() {
     const boxes = document.querySelectorAll('.container .rectangle');
 
     boxes.forEach((box, index) => {
-        const productNameElement = box.querySelector('p');
-        
-        // Verifica se o elemento p foi encontrado
+        const productNameElement = box.querySelector('p:nth-child(1)');
         if (productNameElement) {
             const option = document.createElement('option');
             option.value = index;
-            option.textContent = productNameElement.textContent; // Usa o nome do produto
+            option.textContent = productNameElement.textContent.split(": ")[1]; // Usa o nome do produto
             select.appendChild(option);
-        } else {
-            console.log(`Produto na posição ${index} está vazio e não será adicionado à lista.`);
         }
     });
-
     console.log("Opções de produtos preenchidas:", select.innerHTML);
 }
 
+// Remove o produto selecionado, se o botão de deletar produto existir
+const deleteProductForm = document.querySelector('#deleteProductForm');
+if (deleteProductForm) {
+    deleteProductForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const selectedIndex = document.getElementById('productSelect').value;
+        const boxes = document.querySelectorAll('.container .rectangle');
 
-// Remove o produto selecionado
-document.querySelector('#deleteProductForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const selectedIndex = document.getElementById('productSelect').value;
-    const boxes = document.querySelectorAll('.container .rectangle');
+        if (selectedIndex !== '') {
+            console.log(`Removendo produto na posição: ${selectedIndex}`);
+            boxes[selectedIndex].remove();
+            document.getElementById('deleteModal').style.display = 'none';
+        } else {
+            console.log("Nenhum produto selecionado para remoção.");
+        }
+    });
+}
 
-    if (selectedIndex !== '') {
-        console.log(`Removendo produto na posição: ${selectedIndex}`);
-        boxes[selectedIndex].remove();
-        document.getElementById('deleteModal').style.display = 'none';
-    } else {
-        console.log("Nenhum produto selecionado para remoção.");
-    }
-});
-
-// Criação de um modal para edição de produtos
-// Abre o modal de edição ao clicar no botão "Editar Produto"
+// Abre o modal de venda ao clicar no botão "Vender"
 document.getElementById('editProductBtn').addEventListener('click', function() {
     console.log("Abrindo modal de edição de produto.");
     populateEditProductSelect();
     document.getElementById('editModal').style.display = 'flex';
+    populateClientList('editClientList');
+    resetSellModalFields(); // Limpa os campos ao abrir o modal
 });
 
 // Fecha o modal de edição ao clicar no botão de fechar
@@ -126,11 +154,11 @@ function populateEditProductSelect() {
     const boxes = document.querySelectorAll('.container .rectangle');
 
     boxes.forEach((box, index) => {
-        const productNameElement = box.querySelector('p');
+        const productNameElement = box.querySelector('p:nth-child(1)');
         if (productNameElement) {
             const option = document.createElement('option');
             option.value = index;
-            option.textContent = box.querySelector('p').textContent.split(": ")[1]; // Usa o nome do produto
+            option.textContent = productNameElement.textContent.split(": ")[1]; // Usa o nome do produto
             select.appendChild(option);
         }
     });
@@ -148,6 +176,7 @@ document.getElementById('editProductSelect').addEventListener('change', function
         document.getElementById('editProductQuantity').value = selectedBox.dataset.quantity;
         document.getElementById('editProductPrice').value = selectedBox.dataset.price;
         document.getElementById('editProductValidity').value = selectedBox.dataset.validity;
+        document.getElementById('editProductClient').value = selectedBox.dataset.client;
     }
 });
 
@@ -163,8 +192,10 @@ document.getElementById('editProductForm').addEventListener('submit', function(e
         const newQuantity = document.getElementById('editProductQuantity').value;
         const newPrice = document.getElementById('editProductPrice').value;
         const newValidity = document.getElementById('editProductValidity').value;
+        const newClient = document.getElementById('editProductClient').value;
 
-        selectedBox.querySelector('p:nth-child(1)').textContent = "Nome: " + newName;
+        selectedBox.querySelector('p:nth-child(1)').textContent = "Nome: " + newName;        
+        selectedBox.querySelector('p:nth-child(5)').textContent = "Cliente: " + newClient;
         selectedBox.querySelector('p:nth-child(2)').textContent = "Quantidade: " + newQuantity;
         selectedBox.querySelector('p:nth-child(3)').textContent = "Preço: R$ " + newPrice;
         selectedBox.querySelector('p:nth-child(4)').textContent = "Validade: " + formatDate(newValidity);
@@ -173,8 +204,29 @@ document.getElementById('editProductForm').addEventListener('submit', function(e
         selectedBox.dataset.quantity = newQuantity;
         selectedBox.dataset.price = newPrice;
         selectedBox.dataset.validity = newValidity;
+        selectedBox.dataset.client = newClient;
 
         document.getElementById('editModal').style.display = 'none';
     }
 });
 
+// Popula a lista de clientes ao abrir o modal de adicionar ou editar produto
+function populateClientList(listId) {
+    const clientList = ["Cliente A", "Cliente B", "Cliente C"]; // Lista de clientes disponíveis
+    const dataList = document.getElementById(listId);
+    dataList.innerHTML = ''; // Limpa as opções existentes
+
+    clientList.forEach(client => {
+        const option = document.createElement('option');
+        option.value = client;
+        dataList.appendChild(option);
+    });
+}
+
+document.getElementById('openModalBtn').addEventListener('click', function() {
+    populateClientList('clientList');
+});
+
+document.getElementById('editProductBtn').addEventListener('click', function() {
+    populateClientList('editClientList');
+});
