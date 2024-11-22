@@ -5,12 +5,10 @@ body {
 }
 
 .button-container {
-    margin: 100px;
+    margin: 20px;
     display: flex;
     justify-content: flex-start;
-    /* Botões alinhados à esquerda */
     gap: 10px;
-    /* Espaçamento entre os botões */
 }
 
 button {
@@ -50,18 +48,14 @@ button:hover {
 .container {
     display: grid;
     grid-template-columns: repeat(6, 150px);
-    /* Duas colunas */
     grid-gap: 70px;
-    /* Espaçamento entre os retângulos */
     justify-content: center;
-    /* Centraliza a grade horizontalmente */
     margin-top: 20px;
-    /* Espaçamento superior */
 }
 
 .rectangle {
-    width: 150px;
-    height: 150px;
+    width: 170px;
+    height: 170px;
     background-color: #ffffff;
     padding: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
