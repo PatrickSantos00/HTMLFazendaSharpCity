@@ -10,13 +10,11 @@
 </head>
 
 <body>
-    <!-- Imagem de fundo -->
     <div class="background-image">
         <div class="login-container">
             <h1><span class="highlight">Cadastro <span class="green">Usuário</span></span></h1>
             <form id="form-cadastro" onsubmit="return validarFormulario()">
                 <div class="form-split">
-                    <!-- Lado esquerdo -->
                     <div class="form-left">
                         <label for="nome">NOME</label>
                         <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
@@ -45,7 +43,6 @@
                         <label for="uf">UF</label>
                         <select id="uf" name="uf" required>
                             <option value="" disabled selected>Selecione</option>
-                            <!-- Todas as UFs -->
                             <option value="AC">AC</option>
                             <option value="AL">AL</option>
                             <option value="AP">AP</option>
@@ -76,7 +73,6 @@
                         </select>
                     </div>
 
-                    <!-- Lado direito -->
                     <div class="form-right">
                         <label for="cidade">CIDADE</label>
                         <input type="text" id="cidade" name="cidade" placeholder="Digite a cidade" required>
@@ -98,10 +94,8 @@
                     </div>
                 </div>
 
-                <!-- Erro de validação -->
                 <div id="validation-errors" style="color: red; margin-top: 10px;"></div>
 
-                <!-- Botões -->
                 <div class="form-buttons">
                     <button type="submit" class="login-button">CADASTRAR</button>
                     <button onclick="window.location.href='./Login.html';" type="button" class="signup-button">VOLTAR PARA O LOGIN</button>
