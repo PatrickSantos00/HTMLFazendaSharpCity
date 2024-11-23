@@ -1,0 +1,156 @@
+/* Estilo base */
+.background-image {
+    position: relative;
+    background-image: url('./Imagens/Fundo.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(9, 51, 63, 0.7);
+    z-index: 1;
+}
+
+/* Container principal */
+.login-container {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 800px;
+    background-color: rgba(245, 245, 245, 0.9);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* Para garantir que o padding não afete a largura total */
+}
+
+.login-container h1 {
+    text-align: center;
+    color: #002f67;
+    margin-bottom: 20px;
+}
+
+.login-container .highlight {
+    font-weight: bold;
+}
+
+.login-container .green {
+    color: #077342;
+}
+
+/* Formulário dividido - Alinhar campos na mesma linha */
+.form-split {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os campos que não cabem na linha quebrem para a linha seguinte */
+    gap: 20px; /* Espaçamento entre os campos */
+}
+
+/* Ajustando o tamanho das caixas para ficarem na mesma linha */
+.form-left,
+.form-right {
+    flex: 1;
+    min-width: 48%; /* Ajuste para garantir que fiquem mais alinhados */
+    box-sizing: border-box; /* Para garantir que o padding não afete a largura */
+}
+
+/* Inputs e labels */
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #002f67;
+    font-weight: bold;
+}
+
+.login-container input,
+.login-container select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    box-sizing: border-box; /* Garante que o padding não afete a largura total */
+    font-size: 16px;
+}
+
+/* Botões */
+.form-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-button {
+    background-color: #077342;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #055d29;
+}
+
+.signup-button {
+    background-color: #002f67;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.signup-button:hover {
+    background-color: #011d44;
+}
+
+/* Responsividade - Ajuste para telas menores */
+@media (max-width: 768px) {
+    .form-split {
+        flex-direction: column; /* Para telas menores, os campos se organizam em coluna */
+        gap: 10px; /* Reduzindo o espaço entre os campos */
+    }
+
+    .form-left,
+    .form-right {
+        min-width: 100%; /* Garantindo que cada campo ocupe toda a largura disponível */
+    }
+
+    .login-container {
+        padding: 20px; /* Ajustando o padding da caixa */
+        width: 100%; /* Garantindo que o formulário ocupe toda a largura da tela */
+        margin: 0; /* Remover qualquer margem extra */
+    }
+
+    .login-container h1 {
+        font-size: 24px; /* Ajustando o tamanho da fonte do título em telas pequenas */
+    }
+
+    .login-button, .signup-button {
+        width: 100%; /* Garantindo que os botões ocupem toda a largura da tela */
+        padding: 14px; /* Ajustando o padding dos botões */
+        font-size: 18px; /* Aumentando a legibilidade dos botões */
+    }
+
+    .login-container input,
+    .login-container select {
+        font-size: 14px; /* Ajustando o tamanho da fonte para campos em dispositivos móveis */
+        padding: 10px; /* Ajustando o padding para telas menores */
+    }
+}
