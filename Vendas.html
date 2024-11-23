@@ -10,11 +10,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./Images/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="./Images/favicon_io/site.webmanifest">
     <link media="screen" href="./Styles/MainStyle.css" type="text/css" rel="stylesheet">
-    <link media="screen" href="./Styles/Estoque.css" type="text/css" rel="stylesheet">
+    <link media="screen" href="./Styles/Vendas.css" type="text/css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
+
     <header>
         <section>
             <img src="./Images/LogoFazendaSharpCity.png" width="" height="" alt="FazendaSharpCity" id="logo" />
@@ -33,11 +34,12 @@
     <div class="spacer"></div>
     <div class="button-container">
         <button id="openModalBtn">Incluir Produto</button>
-        <button id="deleteProductBtn">Apagar Produto</button>
-        <button id="editProductBtn">Editar Produto</button>
+        <button id="editProductBtn">Vender</button>
     </div>
     <div class="container">
     </div>
+
+
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeModalBtn">&times;</span>
@@ -45,10 +47,6 @@
             <form id="addProductForm">
                 <label for="productName">Nome</label>
                 <input type="text" id="productName" name="productName" required>
-
-                <label for="productClient">Cliente</label>
-                <input type="text" id="productClient" name="productClient" list="clientList" required>
-                <datalist id="clientList"> </datalist>
 
                 <label for="productQuantity">Quantidade</label>
                 <input type="number" id="productQuantity" name="productQuantity" required>
@@ -64,56 +62,41 @@
         </div>
     </div>
 
-    <!-- Modal de Exclusão -->
-    <div id="deleteModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeDeleteModalBtn">&times;</span>
-            <h2>Apagar Produto</h2>
-            <form id="deleteProductForm">
-                <label for="productSelect">Selecione um produto para apagar</label>
-                <select id="productSelect" name="productSelect" required>
-                    <!-- Opções preenchidas dinamicamente -->
-                </select>
-                <button type="submit" class="submit_excluir">Apagar</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal de Edição -->
+    <!-- Modal de Venda -->
     <div id="editModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeEditModalBtn">&times;</span>
-            <h2>Editar Produto</h2>
-            <form id="editProductForm">
-                <label for="editProductSelect">Selecione um produto para editar</label>
-                <select id="editProductSelect" name="editProductSelect" required>
-                    <!-- Opções preenchidas dinamicamente -->
+            <h2>Venda de Produto</h2>
+            <form id="sellProductForm">
+                <label for="sellProductSelect">Selecione um produto</label>
+                <select id="sellProductSelect" name="sellProductSelect" required>
                 </select>
 
-                <label for="editProductName">Nome</label>
-                <input type="text" id="editProductName" name="editProductName" required>
+                <label for="sellProductQuantity">Quantidade em Estoque</label>
+                <input type="number" id="sellProductQuantity" name="sellProductQuantity" readonly>
 
-                <label for="editProductClient">Cliente</label>
-                <input type="text" id="editProductClient" name="editProductClient" list="editClientList" required>
-                <datalist id="editClientList">
-                </datalist>
+                <label for="sellProductCost">Custo</label>
+                <input type="text" id="sellProductCost" name="sellProductCost" readonly>
 
-                <label for="editProductQuantity">Quantidade</label>
-                <input type="number" id="editProductQuantity" name="editProductQuantity" required>
+                <label for="sellQuantityInput">Quantidade a Vender</label>
+                <input type="number" id="sellQuantityInput" min="1" value="1">
 
-                <label for="editProductPrice">Custo</label>
-                <input type="text" id="editProductPrice" name="editProductPrice" required>
+                <label for="sellProductPrice">Preço</label>
+                <input type="text" id="sellProductPrice" name="sellProductPrice" required>
 
-                <label for="editProductValidity">Validade</label>
-                <input type="date" id="editProductValidity" name="editProductValidity" required>
+                <label for="sellProductMargin">Margem</label>
+                <input type="text" id="sellProductMargin" name="sellProductMargin" required>
 
-                <button type="submit" class="submit_editar">Salvar Alterações</button>
+                <label for="sellTotalValue">Total da Venda:</label>
+                <input type="text" id="sellTotalValue" readonly>
+
+                <button type="submit" class="submit_editar">Concluir Venda</button>
             </form>
         </div>
     </div>
 
     <script src="./js/Faq.js"></script>
-    <script src="./js/Estoque.js"></script>
+    <script src="./js/Vendas.js"></script>
 
     <script>
         function voltar() {
