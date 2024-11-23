@@ -8,6 +8,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Arial', sans-serif; 
+    color: #fff;
 }
 
 .background-image::before {
@@ -31,12 +33,16 @@
     padding: 30px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
+    font-family: 'Verdana', sans-serif; 
+    color: #002f67;
 }
 
 .login-container h1 {
     text-align: center;
     color: #002f67;
     margin-bottom: 20px;
+    font-size: 28px; 
+    font-weight: bold;
 }
 
 .login-container .highlight {
@@ -55,8 +61,9 @@
 .form-left,
 .form-right {
     flex: 1;
-    min-width: 48%;
+    min-width: 48%; 
     box-sizing: border-box;
+    margin-bottom: 15px;
 }
 
 .login-container label {
@@ -64,18 +71,28 @@
     margin-bottom: 5px;
     color: #002f67;
     font-weight: bold;
+    font-size: 14px; 
 }
 
 .login-container input,
 .login-container select {
     width: 100%;
-    padding: 12px;
+    padding: 8px; 
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f8f8f8;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 14px; 
+    font-family: 'Verdana', sans-serif;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.login-container input:focus,
+.login-container select:focus {
+    border-color: #077342;
+    outline: none;
+    background-color: #e8f5e9;
 }
 
 .form-buttons {
@@ -92,11 +109,13 @@
     font-size: 16px;
     cursor: pointer;
     margin-right: 10px;
-    transition: background-color 0.3s;
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .login-button:hover {
     background-color: #055d29;
+    transform: scale(1.05);
 }
 
 .signup-button {
@@ -107,10 +126,13 @@
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .signup-button:hover {
     background-color: #011d44;
+    transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
@@ -143,6 +165,6 @@
     .login-container input,
     .login-container select {
         font-size: 14px;
-        padding: 10px;
+        padding: 8px; 
     }
 }
