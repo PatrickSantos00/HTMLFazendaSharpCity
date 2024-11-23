@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações de Conta</title>
+    <link rel="stylesheet" href="configuraçõesstyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile-picture">
+                <label for="upload-image" class="circle" id="profile-image-container">
+                    <img id="profile-image" src="" alt="Foto de Perfil" style="display: none;">
+                    <span id="profile-initials"></span>
+                    <i class="fas fa-camera" id="camera-icon" aria-label="Alterar foto de perfil"></i>
+                </label>
+                <input type="file" id="upload-image" accept="image/*" style="display: none;">
+                <h1 id="profile-name">Nome do Usuário</h1>
+            </div>
+            <nav>
+                <a href="#" class="active">Perfil</a>
+                <button class="delete-account" onclick="deleteAccount()">Excluir Conta</button>
+                <button class="logout" onclick="logout()">Sair</button>
+            </nav>
+        </div>
+        <div class="content">
+            <form id="profile-form">
+                <section>
+                    <h2>Informações Básicas</h2>
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" placeholder="Digite seu nome">
+
+                    <label for="birthdate">Data de Nascimento:</label>
+                    <input type="date" id="birthdate" name="birthdate">
+
+                    <label for="gender">Gênero:</label>
+                    <select id="gender" name="gender">
+                        <option value="" selected>Selecione</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </section>
+
+                <section>
+                    <h2>Informações de Contato</h2>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu email">
+
+                    <label for="phone">Telefone (DDD + Número):</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX">
+                </section>
+
+                <section>
+                    <h2>Alterar Senha</h2>
+                    <label for="current-password">Senha Atual:</label>
+                    <input type="password" id="current-password" name="current-password" placeholder="Digite sua senha atual">
+
+                    <label for="new-password">Nova Senha:</label>
+                    <input type="password" id="new-password" name="new-password" placeholder="Digite sua nova senha">
+
+                    <label for="confirm-password">Repetir Nova Senha:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Repita sua nova senha">
+                </section>
+
+                <button id="submit-button">CONFRIMAR</button>
+            </form>
+        </div>
+    </div>
+    <div class="notification" id="notification" style="display: none;"></div>
+    <script src="script.js"></script>
+</body>
+</html>
