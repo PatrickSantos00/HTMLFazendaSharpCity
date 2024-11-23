@@ -117,7 +117,7 @@ nav a:hover {
 }
 
 .content {
-  background-color: #f5f5dc; 
+  background-color: #f5f5dc;
   padding: 20px;
   width: 75%;
   overflow-y: auto;
@@ -129,7 +129,7 @@ h2 {
   margin-bottom: 10px;
   border-bottom: 1px solid #ddd;
   padding-bottom: 5px;
-  color: #4CAF50; 
+  color: #4CAF50;
   text-align: left;
 }
 
@@ -137,21 +137,21 @@ label {
   margin-bottom: 5px;
   display: block;
   text-align: left;
-  width: 100%; 
+  width: 100%;
 }
 
 input,
 select {
-  width: 50%; 
-  padding: 8px; 
+  width: 50%;
+  padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  margin: 10px 0; 
+  margin: 10px 0;
   font-size: 14px;
-  background-color: #f5f5dc; 
+  background-color: #f5f5dc;
   color: #000;
   box-sizing: border-box;
-  text-align: left; 
+  text-align: left;
 }
 
 input:focus,
@@ -171,7 +171,7 @@ select:focus {
   cursor: pointer;
   text-align: left;
   transition: background-color 0.3s, color 0.3s;
-  width: auto; 
+  width: auto;
   margin-top: 20px;
 }
 
@@ -189,23 +189,25 @@ select:focus {
 
 
 @media (max-width: 768px) {
+
   input,
   select,
   label {
-    width: 100%; 
+    width: 100%;
     font-size: 16px;
   }
 
   #submit-button {
-    width: 100%; 
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
+
   input,
   select,
   label,
   #submit-button {
-    width: 100%; 
+    width: 100%;
   }
 }
