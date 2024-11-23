@@ -117,7 +117,7 @@ nav a:hover {
 }
 
 .content {
-  background-color: #f5f5dc; /* Cor bege */
+  background-color: #f5f5dc; 
   padding: 20px;
   width: 75%;
   overflow-y: auto;
@@ -129,24 +129,29 @@ h2 {
   margin-bottom: 10px;
   border-bottom: 1px solid #ddd;
   padding-bottom: 5px;
-  color: #4CAF50; /* Verde para os títulos */
+  color: #4CAF50; 
+  text-align: left;
 }
 
 label {
+  margin-bottom: 5px;
   display: block;
-  margin-top: 10px;
+  text-align: left;
+  width: 100%; 
 }
 
 input,
 select {
-  width: 100%;
-  padding: 10px;
+  width: 50%; 
+  padding: 8px; 
   border: 1px solid #ddd;
   border-radius: 4px;
-  margin-top: 5px;
+  margin: 10px 0; 
   font-size: 14px;
-  background-color: #f5f5dc; /* Cor bege */
+  background-color: #f5f5dc; 
   color: #000;
+  box-sizing: border-box;
+  text-align: left; 
 }
 
 input:focus,
@@ -156,25 +161,23 @@ select:focus {
 }
 
 #submit-button {
-  padding: 12px 0;
+  padding: 10px;
   background-color: transparent;
   color: #00B28D;
   border: 2px solid #00B28D;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
   transition: background-color 0.3s, color 0.3s;
-  width: 100%;
-  max-width: 400px;
+  width: auto; 
   margin-top: 20px;
 }
 
 #submit-button:hover {
-  background-color: transparent;
-  border: 2px solid #00B28D;
-  color: #00B28D;
+  background-color: #00B28D;
+  color: #fff;
 }
 
 .error-message {
@@ -184,59 +187,25 @@ select:focus {
   display: block;
 }
 
-/* Estilos para telas menores */
+
 @media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .sidebar {
-    width: 100%;
-    text-align: center;
-    min-height: auto;
-  }
-
-  .content {
-    width: 100%;
-    padding: 10px;
-  }
-
-  h2 {
-    font-size: 18px;
-    padding-bottom: 8px;
-  }
-
   input,
-  select {
+  select,
+  label {
+    width: 100%; 
     font-size: 16px;
-    padding: 12px;
   }
 
   #submit-button {
-    font-size: 18px;
-    padding: 16px 0;
+    width: 100%; 
   }
 }
 
 @media (max-width: 480px) {
-  h2 {
-    font-size: 16px;
-  }
-
-  nav a {
-    font-size: 14px;
-    padding: 8px;
-  }
-
   input,
-  select {
-    font-size: 14px;
-    padding: 10px;
-  }
-
+  select,
+  label,
   #submit-button {
-    font-size: 16px;
-    padding: 12px;
+    width: 100%; 
   }
 }
