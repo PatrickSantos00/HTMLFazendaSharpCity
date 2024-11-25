@@ -48,7 +48,7 @@ function validarFormulario() {
     }
 
     let camposObrigatorios = ['nome', 'tipo-pessoa', 'cpf', 'data-nascimento', 'genero', 'uf', 'cidade', 'endereco', 'logradouro', 'bairro', 'numero'];
-    camposObrigatorios.forEach(function(id) {
+    camposObrigatorios.forEach(function (id) {
         let campo = document.getElementById(id);
         if (!campo.value) {
             erros.push("O campo " + campo.previousElementSibling.innerText + " é obrigatório.");
@@ -78,7 +78,7 @@ function aplicarFormatacao(event) {
     }
 }
 
-document.getElementById('cpf').addEventListener('input', function(event) {
+document.getElementById('cpf').addEventListener('input', function (event) {
     let value = event.target.value;
     event.target.value = value.replace(/\D/g, '');
 });

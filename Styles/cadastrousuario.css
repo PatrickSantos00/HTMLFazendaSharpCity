@@ -8,7 +8,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Arial', sans-serif; 
     color: #fff;
 }
 
@@ -33,7 +32,7 @@
     padding: 30px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
-    font-family: 'Verdana', sans-serif; 
+    font-family: 'Verdana', sans-serif;
     color: #002f67;
 }
 
@@ -41,7 +40,7 @@
     text-align: center;
     color: #002f67;
     margin-bottom: 20px;
-    font-size: 28px; 
+    font-size: 28px;
     font-weight: bold;
 }
 
@@ -61,7 +60,7 @@
 .form-left,
 .form-right {
     flex: 1;
-    min-width: 48%; 
+    min-width: 48%;
     box-sizing: border-box;
     margin-bottom: 15px;
 }
@@ -71,19 +70,19 @@
     margin-bottom: 5px;
     color: #002f67;
     font-weight: bold;
-    font-size: 14px; 
+    font-size: 14px;
 }
 
 .login-container input,
 .login-container select {
     width: 100%;
-    padding: 8px; 
+    padding: 8px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f8f8f8;
     box-sizing: border-box;
-    font-size: 14px; 
+    font-size: 14px;
     font-family: 'Verdana', sans-serif;
     transition: border-color 0.3s, background-color 0.3s;
 }
@@ -156,7 +155,8 @@
         font-size: 24px;
     }
 
-    .login-button, .signup-button {
+    .login-button,
+    .signup-button {
         width: 100%;
         padding: 14px;
         font-size: 18px;
@@ -165,6 +165,6 @@
     .login-container input,
     .login-container select {
         font-size: 14px;
-        padding: 8px; 
+        padding: 8px;
     }
 }
