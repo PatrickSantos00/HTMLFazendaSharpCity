@@ -87,11 +87,10 @@ div.form-section {
     margin-bottom: 5px;
 }
 
-.login-form input[type="email"],
+.login-form input[type="login"],
 .login-form input[type="password"] {
     width: 100%;
     padding: 12px;
-    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #e0e0e0;
@@ -149,6 +148,31 @@ div.form-section {
     height: 50px;
 }
 
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    color: #002f67;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    font-size: 14px;
+}
+
+.input-group input:focus {
+    border: 1px solid #077342;
+    outline: none;
+}
 
 @media (max-width: 768px) {
     .image-section {

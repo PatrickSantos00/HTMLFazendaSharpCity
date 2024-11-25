@@ -45,24 +45,32 @@
                 </div>
             </div>
             <div class="form-section">
-                <form class="login-form" action="/submit-login" method="POST">
-                    <h1><span class="highlight">LOGIN</span></h1>
-                    <label for="email">EMAIL</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu email" required
-                        aria-label="Digite seu email">
-                    <label for="password">SENHA</label>
-                    <input type="password" id="password" name="password" placeholder="Digite sua senha" required
-                        aria-label="Digite sua senha">
+                <form id="login-form" class="login-form">
+                    <h1>
+                        <span class="highlight">LOGIN</span>
+                    </h1>
+                    <div class="input-group">
+                        <label for="login">LOGIN</label>
+                        <input type="text" id="login" name="login" placeholder="Digite seu login" required
+                            aria-label="Digite seu login">
+                    </div>
+                    <div class="input-group">
+                        <label for="password">SENHA</label>
+                        <input type="password" id="password" name="password" placeholder="Digite sua senha" required
+                            aria-label="Digite sua senha">
+                    </div>
                     <a href="#" class="forgot-password">Esqueci a senha</a>
-                    <button type="submit" class="login-button">ENTRAR</button>
-                    <button onclick="window.location.href='./Cadastro.html';" type="button" class="signup-button">CRIAR
-                        CONTA</button>
+                    <button type="submit" id="btn-login" class="login-button">Entrar</button>
+                    <button onclick="window.location.href='./Cadastro.html';" type="button" class="signup-button">Criar
+                        Conta</button>
                 </form>
             </div>
+
         </div>
     </div>
 
     <script src="./js/Faq.js"></script>
+    <script src="./js/LoginAPI.js"></script>
 
     <script>
         function voltar() {
