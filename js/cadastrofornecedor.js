@@ -1,114 +1,58 @@
-function permitirApenasNumeros(event) {
-    const key = event.key;
-    if (!/[0-9]/.test(key) && key !== "Backspace" && key !== "Delete") {
-        event.preventDefault();
-    }
-}
+async function validarFormulario() {
+    // Obter os dados do formulário
+    const fornecedor = {
+        razaoSocial: document.getElementById("razaosocial").value,
+        nomeFantasia: document.getElementById("nome").value,
+        cnpj: document.getElementById("cpf").value,
+        email: document.getElementById("email").value,
+        telefoneFornecedor: document.getElementById("telefone").value,
+        enderecoId: 0 // Será atualizado após o cadastro do endereço
+    };
 
-function permitirApenasLetras(event) {
-    const key = event.key;
-    if (!/[a-zA-ZçÇáÁéÉíÍóÓúÚãÃõÕâÂêÊôÔàÀ ]/.test(key) && key !== "Backspace" && key !== "Delete") {
-        event.preventDefault();
-    }
-}
+    const endereco = {
+        logradouro: document.getElementById("logradouro").value,
+        complemento: document.getElementById("complemento").value,
+        bairro: document.getElementById("bairro").value,
+        estado: document.getElementById("uf").value,
+        cidade: document.getElementById("cidade").value,
+        cep: document.getElementById("cep").value,
+        numero: document.getElementById("numero").value
+    };
 
-function formatarTelefone(value) {
-    value = value.replace(/\D/g, '');
-    if (value.length > 10) {
-        value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
-    } else if (value.length > 6) {
-        value = value.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
-    } else {
-        value = value.replace(/^(\d{2})(\d{0,4})$/, '($1) $2');
-    }
-    return value;
-}
+    try {
+        // Cadastrar endereço
+        const enderecoResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Endereco", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(endereco)
+        });
 
-function validarCep(value) {
-    return /^\d{5}-\d{3}$/.test(value);
-}
-
-function validarEmail(value) {
-    return value.includes('@'); 
-}
-function limitarDigitosTelefone(event) {
-    const input = event.target;
-    const value = input.value.replace(/\D/g, ''); 
-    if (value.length > 11) {
-        input.value = value.slice(0, 11); 
-    }
-}
-
-function validarFormulario() {
-    document.getElementById("validation-errors").innerHTML = "";
-    const erros = [];
-
-    const nome = document.getElementById("nome").value;
-    if (!nome || nome.split(' ').length < 2) {
-        erros.push("O nome deve conter pelo menos dois nomes.");
-    }
-    const razaosocial = document.getElementById("razao social").value;
-    if (!razaosocial || razaosocial.split(' ').length < 2) {
-        erros.push("O nome deve conter pelo menos dois nomes.");
-    }
-
-    const telefone = document.getElementById("telefone").value;
-    if (!telefone || telefone.replace(/\D/g, '').length !== 11) {
-        erros.push("O telefone deve conter exatamente 11 dígitos.");
-    }
-
-    const email = document.getElementById("email").value;
-    if (!validarEmail(email)) {
-        erros.push("O email informado deve conter '@'.");
-    }
-
-    const cpfCnpj = document.getElementById("cpf").value;
-    if (!cpfCnpj || cpfCnpj.replace(/\D/g, '').length < 11) {
-        erros.push("O CPF ou CNPJ deve conter apenas números.");
-    }
-
-    const cep = document.getElementById("cep").value;
-    if (!validarCep(cep)) {
-        erros.push("O CEP deve estar no formato 00000-000.");
-    }
-
-    const camposObrigatorios = ['nome','razaosocial', 'telefone', 'email', 'cep', 'uf', 'cidade', 'endereco', 'logradouro', 'bairro', 'numero'];
-    camposObrigatorios.forEach(function (id) {
-        const campo = document.getElementById(id);
-        if (!campo || !campo.value) {
-            erros.push("O campo " + campo.previousElementSibling.innerText + " é obrigatório.");
+        if (!enderecoResponse.ok) {
+            throw new Error("Erro ao cadastrar endereço.");
         }
-    });
 
-    if (erros.length > 0) {
-        const errorHtml = "<ul>" + erros.map(erro => `<li>${erro}</li>`).join('') + "</ul>";
-        document.getElementById("validation-errors").innerHTML = errorHtml;
-        return false;
+        const enderecoData = await enderecoResponse.json();
+        fornecedor.enderecoId = enderecoData.id; // Supondo que a API retorna o ID do endereço criado
+
+        // Cadastrar fornecedor
+        const fornecedorResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Fornecedor", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(fornecedor)
+        });
+
+        if (!fornecedorResponse.ok) {
+            throw new Error("Erro ao cadastrar fornecedor.");
+        }
+
+        const fornecedorData = await fornecedorResponse.json();
+        alert("Cadastro realizado com sucesso!");
+        console.log("Fornecedor cadastrado:", fornecedorData);
+    } catch (error) {
+        console.error(error);
+        document.getElementById("validation-errors").textContent = error.message;
     }
 
-    return true;
+    // Impede o envio tradicional do formulário
+    return false;
 }
-
-function aplicarFormatacao(event) {
-    const campo = event.target;
-    const value = campo.value;
-
-    if (campo.id === "cpf") {
-        campo.value = value.replace(/\D/g, ''); 
-    } else if (campo.id === "telefone") {
-        campo.value = formatarTelefone(value);
-    } else if (campo.id === "cep") {
-        campo.value = value.replace(/^(\d{5})(\d{3})$/, '$1-$2');
-    }
-}
-
-document.getElementById('nome').addEventListener('keydown', permitirApenasLetras);
-document.getElementById('cidade').addEventListener('keydown', permitirApenasLetras);
-
-document.getElementById('telefone').addEventListener('input', aplicarFormatacao);
-document.getElementById('cep').addEventListener('input', aplicarFormatacao);
-
-document.getElementById('telefone').addEventListener('keydown', permitirApenasNumeros);
-document.getElementById('cep').addEventListener('keydown', permitirApenasNumeros);
-document.getElementById('cpf').addEventListener('keydown', permitirApenasNumeros);
-document.getElementById('numero').addEventListener('keydown', permitirApenasNumeros);
