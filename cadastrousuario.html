@@ -4,41 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FazendaSharpCity</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="./Images/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./Images/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./Images/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="./Images/favicon_io/site.webmanifest">
+    <title>Cadastro Cliente</title>
+    <link rel="stylesheet" href="./Styles/CadastroUsuario.css">
     <link media="screen" href="./Styles/MainStyle.css" type="text/css" rel="stylesheet">
-    <link media="screen" href="./Styles/CadastroUsuario.css" type="text/css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/1875de819e.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="background-image">
         <div class="login-container">
-            <h1><span class="highlight">Cadastro <span class="green">Funcionário</span></span></h1>
+            <h1><span class="highlight">Cadastro <span class="green">Usuário</span></span></h1>
             <form id="form-cadastro" onsubmit="return validarFormulario()">
                 <div class="form-split">
                     <div class="form-left">
                         <label for="nome">NOME</label>
                         <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
 
-                        <label for="usuario">NOME DE USUÁRIO</label>
-                        <input type="text" id="usuario" name="usuario" placeholder="Digite o usuário para login"
-                            required>
+                        <label for="tipo-pessoa">TIPO DE PESSOA</label>
+                        <select id="tipo-pessoa" name="tipo-pessoa" required>
+                            <option value="" disabled selected>Selecione</option>
+                            <option value="fisica">Pessoa Física</option>
+                            <option value="juridica">Pessoa Jurídica</option>
+                        </select>
 
-                        <label for="senha">SENHA</label>
-                        <input type="text" id="senha" name="senha" placeholder="Digite uma senha para login" required>
+                        <label for="cpf">CPF ou CNPJ</label>
+                        <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF ou CNPJ" required>
 
-                        <label for="TELEFONE">TELEFONE</label>
-                        <input type="tel" id="telefone" name="telefone" placeholder="Digite seu telefone" required>
+                        <label for="data-nascimento">DATA DE NASCIMENTO</label>
+                        <input type="date" id="data-nascimento" name="data-nascimento" required>
 
-                        <label for="cpf">CPF</label>
-                        <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
-
-                        <label for="email">E-MAIL</label>
-                        <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                        <label for="genero">GÊNERO</label>
+                        <select id="genero" name="genero" required>
+                            <option value="" disabled selected>Selecione</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outro">Outro</option>
+                        </select>
 
                         <label for="uf">UF</label>
                         <select id="uf" name="uf" required>
@@ -77,9 +78,6 @@
                         <label for="cidade">CIDADE</label>
                         <input type="text" id="cidade" name="cidade" placeholder="Digite a cidade" required>
 
-                        <label for="cep">CEP</label>
-                        <input type="text" id="cep" name="cep" placeholder="Digite seu CEP" required>
-
                         <label for="endereco">ENDEREÇO</label>
                         <input type="text" id="endereco" name="endereco" placeholder="Digite seu endereço" required>
 
@@ -108,7 +106,7 @@
         </div>
     </div>
 
-    <script src="./js/CadastroFuncio.js"></script>
+    <script src="./js/CadastroUsuario.js"></script>
 </body>
 
 </html>
