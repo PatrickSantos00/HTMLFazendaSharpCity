@@ -101,14 +101,18 @@
 
                 <div class="form-buttons">
                     <button type="submit" class="login-button">CADASTRAR</button>
-                    <button onclick="window.location.href='./Login.html';" type="button" class="signup-button">VOLTAR
-                        PARA O LOGIN</button>
+                    <button onclick="voltar()" type="button" class="signup-button">VOLTAR</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script src="./js/CadastroFuncio.js"></script>
+    <script>
+        function voltar() {
+            window.history.back();
+        }
+    </script>
 </body>
 
 </html>

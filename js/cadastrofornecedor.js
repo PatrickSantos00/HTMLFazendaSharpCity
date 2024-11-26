@@ -1,5 +1,14 @@
-async function validarFormulario() {
-    // Obter os dados do formulário
+async function validarFormulario(event) {
+    event.preventDefault(); // Previne o envio padrão do formulário
+
+    const token = localStorage.getItem("authToken"); // Obtém o token armazenado
+
+    // Configurar cabeçalhos
+    const headers = {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}` // Insere o token automaticamente
+    };
+
     const fornecedor = {
         razaoSocial: document.getElementById("razaosocial").value,
         nomeFantasia: document.getElementById("nome").value,
@@ -15,37 +24,37 @@ async function validarFormulario() {
         bairro: document.getElementById("bairro").value,
         estado: document.getElementById("uf").value,
         cidade: document.getElementById("cidade").value,
-        cep: document.getElementById("cep").value,
-        numero: document.getElementById("numero").value
+        cep: document.getElementById("cep").value.replace("-", ""), // Remove hífen do CEP
+        numero: parseInt(document.getElementById("numero").value, 10) // Converte o número para inteiro
     };
 
     try {
         // Cadastrar endereço
         const enderecoResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Endereco", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers,
             body: JSON.stringify(endereco)
         });
 
+        const enderecoData = await enderecoResponse.json();
         if (!enderecoResponse.ok) {
-            throw new Error("Erro ao cadastrar endereço.");
+            throw new Error(`Erro ao cadastrar endereço: ${enderecoData.message || "Desconhecido"}`);
         }
 
-        const enderecoData = await enderecoResponse.json();
         fornecedor.enderecoId = enderecoData.id; // Supondo que a API retorna o ID do endereço criado
 
         // Cadastrar fornecedor
         const fornecedorResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Fornecedor", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers,
             body: JSON.stringify(fornecedor)
         });
 
+        const fornecedorData = await fornecedorResponse.json();
         if (!fornecedorResponse.ok) {
-            throw new Error("Erro ao cadastrar fornecedor.");
+            throw new Error(`Erro ao cadastrar fornecedor: ${fornecedorData.message || "Desconhecido"}`);
         }
 
-        const fornecedorData = await fornecedorResponse.json();
         alert("Cadastro realizado com sucesso!");
         console.log("Fornecedor cadastrado:", fornecedorData);
     } catch (error) {
@@ -53,6 +62,5 @@ async function validarFormulario() {
         document.getElementById("validation-errors").textContent = error.message;
     }
 
-    // Impede o envio tradicional do formulário
     return false;
 }

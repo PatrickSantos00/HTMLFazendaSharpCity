@@ -18,7 +18,7 @@
     <div class="background-image">
         <div class="login-container">
             <h1><span class="highlight">Cadastro <span class="green">Fornecedor</span></span></h1>
-            <form id="form-cadastro" onsubmit="return validarFormulario()">
+            <form id="form-cadastro" onsubmit="return validarFormulario(event)">
                 <div class="form-split">
                     <div class="form-left">
                         <label for="nome">NOME FANTASIA</label>
@@ -98,14 +98,19 @@
 
                 <div class="form-buttons">
                     <button type="submit" class="login-button">CADASTRAR</button>
-                    <button onclick="window.location.href='./Login.html';" type="button" class="signup-button">VOLTAR
-                        PARA O LOGIN</button>
+                    <button onclick="voltar()" type="button" class="signup-button">VOLTAR</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script src="./js/CadastroFornecedor.js"></script>
+    <script>
+        function voltar() {
+            window.history.back();
+        }
+    </script>
+
 </body>
 
 </html>

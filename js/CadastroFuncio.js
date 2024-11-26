@@ -1,6 +1,19 @@
 async function cadastrarUsuario(event) {
     event.preventDefault(); // Previne o envio padrão do formulário
 
+    // Obtém o token armazenado no localStorage
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+        alert("Você não está autenticado. Faça login novamente.");
+        return;
+    }
+
+    // Configura os cabeçalhos com o token
+    const headers = {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+    };
+
     // Captura os dados do formulário
     const nome = document.getElementById("nome").value.trim();
     const telefone = document.getElementById("telefone").value.trim();
