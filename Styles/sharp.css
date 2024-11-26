@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;600;700&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+h1,
+h2,
+h3,
+h4,
+#menu,
+footer,
+a.mais,
+a.btn,
+.box a,
+#homeIntro p strong,
+.icones,
+#comoFunciona .chamadaFinal,
+#resolve {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+header, footer, .hero, .container, .funcionalidades, text-block{
+    width: 100%; 
+    margin: 0 auto;
+}
+
+body {
+    margin: 0;
+    padding: 0; 
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f5f5dc; 
+    overflow-x: hidden; 
+}
+
+header {
+    background: #002a47;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nav a {
+    color: #fff;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.hero {
+    text-align: center;
+    background: url('../Images/sejaEficiente.png') no-repeat center center;
+    background-size: cover;
+    padding: 250px 0px;
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+    margin: 10px 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.funcionalidades {
+    background-color: #f5f5dc; 
+    padding: 50px 20px;
+    text-align: center;
+    color: #003f3f; 
+}
+
+.funcionalidades h2 {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    color: #003f3f; 
+}
+
+.funcionalidades-lista {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.funcionalidade-item {
+    background-color: #2b2b2b; 
+    border-radius: 12px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.funcionalidade-item img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.funcionalidade-item p {
+    font-size: 1em;
+    color: #ffffff; 
+}
+
+.funcionalidade-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+
+.btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #004d40;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #00695c;
+}
+
+.footer {
+    background: #002a47;
+    color: #fff;
+    text-align: center;
+    padding: 0px 0;
+    margin-top: 20px;
+}
+.container {
+    max-width: 100%; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    box-sizing: border-box; 
+}
+
+.centralized-title h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.centralized-title .highlight {
+    color: #2a5;
+    font-weight: bold;
+}
+
+.content p {
+    margin-bottom: 15px;
+    text-align: justify;
+    color: #555;
+}
+
+.content strong {
+    color: #2a5;
+    font-weight: bold;
+}
+
+.text-block {
+    background: #f5f5dc;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.advanced-management {
+    background-color: #f5f5dc; 
+    padding: 50px 0; 
+    margin: 0; 
+    width: 100%; 
+}
