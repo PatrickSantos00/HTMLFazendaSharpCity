@@ -1,6 +1,6 @@
 .background-image {
     position: relative;
-    background-image: url('./Imagens/Fundo.jpg');
+    background-image: url('../Images/Fundo.jpg');
     background-size: cover;
     background-position: center;
     width: 100vw;
