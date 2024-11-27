@@ -1,17 +1,12 @@
 async function cadastrarUsuario(event) {
     event.preventDefault(); // Previne o envio padrão do formulário
 
-    // Obtém o token armazenado no localStorage
-    const token = localStorage.getItem("authToken");
-    if (!token) {
-        alert("Você não está autenticado. Faça login novamente.");
-        return;
-    }
+    const token = localStorage.getItem("authToken"); // Obtém o token armazenado
 
-    // Configura os cabeçalhos com o token
+    // Configurar cabeçalhos
     const headers = {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+        "Authorization": `Bearer ${token}` // Insere o token automaticamente
     };
 
     // Captura os dados do formulário
@@ -48,9 +43,9 @@ async function cadastrarUsuario(event) {
             numero: parseInt(numero), // Converte número para inteiro
         };
 
-        const enderecoResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Endereco", {
+        const enderecoResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Endereco/Cadastrar", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers,
             body: JSON.stringify(enderecoPayload),
         });
 
@@ -72,9 +67,9 @@ async function cadastrarUsuario(event) {
             EnderecoId: enderecoId, // Usa o ID do endereço
         };
 
-        const funcionarioResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Funcionario", {
+        const funcionarioResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Funcionario/Cadastrar", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers,
             body: JSON.stringify(funcionarioPayload),
         });
 
@@ -91,7 +86,7 @@ async function cadastrarUsuario(event) {
 
         const usuarioResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Usuario/CadastroFunci", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers,
             body: JSON.stringify(usuarioPayload),
         });
 
@@ -102,10 +97,6 @@ async function cadastrarUsuario(event) {
 
         // Sucesso no cadastro do usuário
         console.log("Usuário cadastrado com sucesso!");
-
-        // Exibe mensagem de sucesso e redireciona
-        alert("Cadastro realizado com sucesso!");
-        window.location.href = "./Login.html";
 
     } catch (error) {
         // Exibe mensagem de erro

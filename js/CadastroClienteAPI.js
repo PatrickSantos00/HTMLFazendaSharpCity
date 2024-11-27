@@ -54,7 +54,7 @@ document.getElementById('form-cadastro').addEventListener('submit', async functi
 
     try {
         // Faz a requisição para criar o endereço
-        const enderecoResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Endereco", {
+        const enderecoResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Endereco/Cadastrar", {
             method: "POST",
             headers,
             body: JSON.stringify(enderecoData)
@@ -68,7 +68,7 @@ document.getElementById('form-cadastro').addEventListener('submit', async functi
         clienteData.enderecoId = enderecoResult.id; // Assume que a API retorna um "id"
 
         // Faz a requisição para criar o cliente
-        const clienteResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Cliente", {
+        const clienteResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Cliente/Cadastrar", {
             method: "POST",
             headers,
             body: JSON.stringify(clienteData)

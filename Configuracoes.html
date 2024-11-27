@@ -4,15 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FazendaSharpCity</title>
+    <title>Configurações de Cadastro</title>
     <link rel="apple-touch-icon" sizes="180x180" href="./Images/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./Images/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./Images/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="./Images/favicon_io/site.webmanifest">
     <link media="screen" href="./Styles/MainStyle.css" type="text/css" rel="stylesheet">
     <link media="screen" href="./Styles/Configuracoesstyles.css" type="text/css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1875de819e.js" crossorigin="anonymous"></script>
 </head>
+
+<style>
+    .highlight {
+        background-color: #fffbcc;
+        border: 2px solid #f1c40f;
+        padding: 5px;
+        font-weight: bold;
+    }
+
+    label[for="cpf-cnpj"] {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    label[for="cpf"],
+    label[for="cnpj"] {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    /* Esconde as seções inicialmente */
+    #campos-especificos,
+    #dados-em-destaque,
+    #dados-comuns,
+    #endereco {
+        display: none;
+    }
+</style>
 
 <body>
     <div class="container">
@@ -27,61 +55,184 @@
                 <h1 id="profile-name">Nome do Usuário</h1>
             </div>
             <nav>
-                <a href="#" class="active">Perfil</a>
                 <button class="delete-account" onclick="deleteAccount()">Excluir Conta</button>
-                <button class="logout" onclick="logout()">Sair</button>
+                <input type="hidden" id="account-id" value="123">
+                <button class="logout" onclick="voltar()">Voltar</button>
             </nav>
         </div>
         <div class="content">
-            <form id="profile-form">
-                <section>
-                    <h2>Informações Básicas</h2>
-                    <label for="name">Nome:</label>
-                    <input type="text" id="name" name="name" placeholder="Digite seu nome">
+            <h1>Atualizar Cadastro</h1>
 
-                    <label for="birthdate">Data de Nascimento:</label>
-                    <input type="date" id="birthdate" name="birthdate">
+            <label for="cadastro-type">Selecione o tipo de cadastro:</label>
+            <select id="cadastro-type" onchange="updateForm()">
+                <option value="" selected disabled>Selecione</option>
+                <option value="cliente">Cliente</option>
+                <option value="funcionario">Funcionário</option>
+                <option value="fornecedor">Fornecedor</option>
+            </select>
 
-                    <label for="gender">Gênero:</label>
-                    <select id="gender" name="gender">
-                        <option value="" selected>Selecione</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Feminino">Feminino</option>
-                        <option value="Outro">Outro</option>
-                    </select>
+            <form id="cadastro-form">
+                <section id="campos-especificos">
+                    <!-- Campos Específicos serão preenchidos dinamicamente -->
                 </section>
 
-                <section>
-                    <h2>Informações de Contato</h2>
+                <section id="dados-em-destaque">
+                    <h2>Informações em Destaque</h2>
+                    <div id="cliente-info" class="cliente-info">
+                        <label for="cpf-cnpj">CPF ou CNPJ:</label>
+                        <input class="highlight" type="text" id="cpf-cnpj" name="cpf-cnpj"
+                            placeholder="Digite o CPF ou CNPJ">
+                        <button type="button" class="btn-pesquisar" id="btn-pesquisar-cliente">Pesquisar</button>
+                    </div>
+                    <div id="funcionario-info" class="funcionario-info">
+                        <label for="cpf">CPF:</label>
+                        <input class="highlight" type="text" id="cpf" name="cpf" placeholder="Digite o CPF">
+                        <button type="button" class="btn-pesquisar" id="btn-pesquisar-funcionario">Pesquisar</button>
+                    </div>
+                    <div id="fornecedor-info" class="fornecedor-info">
+                        <label for="cnpj">CNPJ:</label>
+                        <input class="highlight" type="text" id="cnpj" name="cnpj" placeholder="Digite o CNPJ">
+                        <button type="button" class="btn-pesquisar" id="btn-pesquisar-fornecedor">Pesquisar</button>
+                    </div>
+                </section>
+
+                <section id="dados-comuns">
+                    <h2>Informações Comuns</h2>
+                    <div id="fornecedor-comum" style="display: none;">
+                        <label for="razao-social">Razão Social:</label>
+                        <input type="text" id="razao-social" name="razao-social" placeholder="Digite a Razão Social"
+                            oninput="updateProfileName()">
+                        <label for="nome-fantasia">Nome Fantasia:</label>
+                        <input type="text" id="nome-fantasia" name="nome-fantasia" placeholder="Digite o Nome Fantasia">
+                    </div>
+                    <div id="outros-comum">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" placeholder="Digite o nome"
+                            oninput="updateProfileName()">
+                    </div>
+
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu email">
+                    <input type="email" id="email" name="email" placeholder="Digite o email">
 
-                    <label for="phone">Telefone (DDD + Número):</label>
-                    <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX">
                 </section>
 
-                <section>
-                    <h2>Alterar Senha</h2>
-                    <label for="current-password">Senha Atual:</label>
-                    <input type="password" id="current-password" name="current-password"
-                        placeholder="Digite sua senha atual">
+                <section id="endereco">
+                    <h2>Endereço</h2>
+                    <label for="logradouro">Logradouro:</label>
+                    <input type="text" id="logradouro" name="logradouro" placeholder="Digite o logradouro">
 
-                    <label for="new-password">Nova Senha:</label>
-                    <input type="password" id="new-password" name="new-password" placeholder="Digite sua nova senha">
+                    <label for="numero">Número:</label>
+                    <input type="number" id="numero" name="numero" placeholder="Digite o número">
 
-                    <label for="confirm-password">Repetir Nova Senha:</label>
-                    <input type="password" id="confirm-password" name="confirm-password"
-                        placeholder="Repita sua nova senha">
+                    <label for="complemento">Complemento:</label>
+                    <input type="text" id="complemento" name="complemento" placeholder="Digite o complemento">
+
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" id="bairro" name="bairro" placeholder="Digite o bairro">
+
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade" placeholder="Digite a cidade">
+
+                    <label for="estado">Estado:</label>
+                    <input type="text" id="estado" name="estado" placeholder="Digite o estado">
+
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" placeholder="Digite o CEP">
                 </section>
 
-                <button id="submit-button">CONFIRMAR</button>
+                <button type="submit" style="display: none;" id="submit-btn">CONFIRMAR</button>
             </form>
         </div>
     </div>
-    <div class="notification" id="notification" style="display: none;"></div>
 
+    <script>
+        function updateForm() {
+            const cadastroType = document.getElementById("cadastro-type").value;
+            const clienteInfo = document.getElementById("cliente-info");
+            const funcionarioInfo = document.getElementById("funcionario-info");
+            const fornecedorInfo = document.getElementById("fornecedor-info");
+            const fornecedorComum = document.getElementById("fornecedor-comum");
+            const outrosComum = document.getElementById("outros-comum");
+            const camposEspecificos = document.getElementById("campos-especificos");
+            const dadosEmDestaque = document.getElementById("dados-em-destaque");
+            const dadosComuns = document.getElementById("dados-comuns");
+            const endereco = document.getElementById("endereco");
+            const submitBtn = document.getElementById("submit-btn");
+
+            // Esconde todas as seções inicialmente
+            camposEspecificos.style.display = "none";
+            dadosEmDestaque.style.display = "none";
+            dadosComuns.style.display = "none";
+            endereco.style.display = "none";
+            submitBtn.style.display = "none";
+
+            // Exibe as seções de acordo com o tipo de cadastro selecionado
+            if (cadastroType === "cliente") {
+                camposEspecificos.style.display = "block";
+                dadosEmDestaque.style.display = "block";
+                dadosComuns.style.display = "block";
+                endereco.style.display = "block";
+                submitBtn.style.display = "block";
+                clienteInfo.style.display = "block";
+                funcionarioInfo.style.display = "none";
+                fornecedorInfo.style.display = "none";
+                fornecedorComum.style.display = "none"; // Oculta Razão Social e Nome Fantasia
+                outrosComum.style.display = "block";
+            } else if (cadastroType === "funcionario") {
+                camposEspecificos.style.display = "block";
+                dadosEmDestaque.style.display = "block";
+                dadosComuns.style.display = "block";
+                endereco.style.display = "block";
+                submitBtn.style.display = "block";
+                clienteInfo.style.display = "none";
+                funcionarioInfo.style.display = "block";
+                fornecedorInfo.style.display = "none";
+                fornecedorComum.style.display = "none"; // Oculta Razão Social e Nome Fantasia
+                outrosComum.style.display = "block";
+            } else if (cadastroType === "fornecedor") {
+                camposEspecificos.style.display = "block";
+                dadosEmDestaque.style.display = "block";
+                dadosComuns.style.display = "block";
+                endereco.style.display = "block";
+                submitBtn.style.display = "block";
+                clienteInfo.style.display = "none";
+                funcionarioInfo.style.display = "none";
+                fornecedorInfo.style.display = "block";
+                fornecedorComum.style.display = "block"; // Exibe Razão Social e Nome Fantasia
+                outrosComum.style.display = "none"; // Oculta o campo Nome
+            }
+        }
+
+        // Atualiza o nome do usuário dinamicamente
+        function updateProfileName() {
+            const nomeField = document.getElementById("nome");
+            const razaoSocialField = document.getElementById("razao-social");
+            const profileName = document.getElementById("profile-name");
+
+            // Se o campo Nome ou Razão Social for preenchido, altera o título
+            if (razaoSocialField && razaoSocialField.value.trim() !== "") {
+                profileName.textContent = razaoSocialField.value;
+            } else if (nomeField && nomeField.value.trim() !== "") {
+                profileName.textContent = nomeField.value;
+            } else {
+                profileName.textContent = "Nome do Usuário";
+            }
+        }
+
+        function voltar() {
+            window.history.back();
+        }
+
+    </script>
+    <script src="./js/formValidation.js"></script>
+    <script src="./js/formAtualization.js"></script>
+    <script src="./js/formDelete.js"></script>
+
+    <script src="./js/ValidationToken.js"></script>
     <script src="./js/Cofiguracoes.js"></script>
-
+    <script src="./js/Faq.js"></script>
 </body>
 
 </html>

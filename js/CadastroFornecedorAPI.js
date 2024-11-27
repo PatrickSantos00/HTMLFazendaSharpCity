@@ -30,7 +30,7 @@ async function validarFormulario(event) {
 
     try {
         // Cadastrar endereço
-        const enderecoResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Endereco", {
+        const enderecoResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Endereco/Cadastrar", {
             method: "POST",
             headers,
             body: JSON.stringify(endereco)
@@ -44,7 +44,7 @@ async function validarFormulario(event) {
         fornecedor.enderecoId = enderecoData.id; // Supondo que a API retorna o ID do endereço criado
 
         // Cadastrar fornecedor
-        const fornecedorResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Fornecedor", {
+        const fornecedorResponse = await fetch("https://cors-anywhere.herokuapp.com/http://164.152.53.66:5000/Fornecedor/Cadastrar", {
             method: "POST",
             headers,
             body: JSON.stringify(fornecedor)
