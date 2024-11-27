@@ -47,7 +47,7 @@ function validarFormulario() {
     if (!nome || nome.split(' ').length < 2) {
         erros.push("O nome deve conter pelo menos dois nomes.");
     }
-    const razaosocial = document.getElementById("razao social").value;
+    const razaosocial = document.getElementById("razaosocial").value;
     if (!razaosocial || razaosocial.split(' ').length < 2) {
         erros.push("O nome deve conter pelo menos dois nomes.");
     }
